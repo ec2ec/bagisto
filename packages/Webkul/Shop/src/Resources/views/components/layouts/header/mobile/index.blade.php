@@ -30,8 +30,8 @@
                     class="block"
                     src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
                     alt="{{ core()->getCurrentChannel()->logo_alt ?: config('app.name') }}"
-                    width="131"
-                    height="29"
+                    width="190"
+                    height="35"
                 >
             </a>
 
@@ -270,8 +270,8 @@
                             <img
                                 src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
                                 alt="{{ core()->getCurrentChannel()->logo_alt ?: config('app.name') }}"
-                                width="131"
-                                height="29"
+                                width="190"
+                                height="35"
                             >
                         </a>
                     </div>
