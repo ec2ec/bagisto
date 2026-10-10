@@ -13,7 +13,7 @@ return [
      * actually cached is decided in Configure → Cache Management → Full Page Cache,
      * which is the only switch an operator needs.
      */
-    'enabled' => true,
+    'enabled' => false,
 
     'cache' => [
         /*

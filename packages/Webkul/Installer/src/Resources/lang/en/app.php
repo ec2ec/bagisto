@@ -229,6 +229,7 @@ return [
                 'tr' => 'Turkish',
                 'uk' => 'Ukrainian',
                 'zh_CN' => 'Chinese',
+                'zh_HK' => 'Chinese (Hong Kong)',
             ],
         ],
 
@@ -981,6 +982,7 @@ return [
             'bengali' => 'Bengali',
             'catalan' => 'Catalan',
             'chinese' => 'Chinese',
+            'chinese-hong-kong' => 'Chinese (Hong Kong)',
             'continue' => 'Continue',
             'dutch' => 'Dutch',
             'english' => 'English',

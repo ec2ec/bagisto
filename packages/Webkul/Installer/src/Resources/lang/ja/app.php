@@ -229,6 +229,7 @@ return [
                 'tr' => 'トルコ語',
                 'uk' => 'ウクライナ語',
                 'zh_CN' => '中国語',
+                'zh_HK' => '中国語（香港）',
             ],
         ],
 
@@ -981,6 +982,7 @@ return [
             'bengali' => 'ベンガル語',
             'catalan' => 'カタルーニャ語',
             'chinese' => '中国語',
+            'chinese-hong-kong' => '中国語（香港）',
             'continue' => '続行',
             'dutch' => 'オランダ語',
             'english' => '英語',

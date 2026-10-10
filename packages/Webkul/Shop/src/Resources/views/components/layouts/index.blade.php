@@ -29,7 +29,7 @@
 
         <meta
             name="viewport"
-            content="width=device-width, initial-scale=1"
+            content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
         >
         <meta
             name="base-url"
@@ -46,11 +46,25 @@
 
         @stack('meta')
 
-        <link
-            rel="icon"
-            sizes="16x16"
-            href="{{ core()->getCurrentChannel()->favicon_url ?? bagisto_asset('images/favicon.ico') }}"
-        />
+        @if ($favicon = core()->getCurrentChannel()->favicon_url)
+            <link
+                rel="icon"
+                sizes="16x16"
+                href="{{ $favicon }}"
+            />
+        @elseif ($favicon = core()->getConfigData('general.design.admin_logo.favicon'))
+            <link
+                rel="icon"
+                sizes="16x16"
+                href="{{ Storage::url($favicon) }}"
+            />
+        @else
+            <link
+                rel="icon"
+                sizes="16x16"
+                href="{{ bagisto_asset('images/favicon.ico') }}"
+            />
+        @endif
 
         @bagistoVite(['src/Resources/assets/css/app.css', 'src/Resources/assets/js/app.js'])
 

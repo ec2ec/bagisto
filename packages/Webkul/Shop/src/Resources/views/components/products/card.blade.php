@@ -98,21 +98,6 @@
 
                         {!! view_render_event('bagisto.shop.components.products.card.wishlist_option.after') !!}
 
-                        {!! view_render_event('bagisto.shop.components.products.card.compare_option.before') !!}
-
-                        @if (core()->getConfigData('catalog.products.settings.compare_option'))
-                            <span
-                                class="icon-compare absolute top-10 flex h-6 w-6 items-center justify-center rounded-full border border-zinc-200 bg-white text-lg sm:hidden ltr:right-1.5 rtl:left-1.5"
-                                role="button"
-                                aria-label="@lang('shop::app.components.products.card.add-to-compare')"
-                                tabindex="0"
-                                @click="addToCompare(product.id)"
-                            >
-                            </span>
-                        @endif
-
-                        {!! view_render_event('bagisto.shop.components.products.card.compare_option.after') !!}
-
                     </div>
                 </div>
             </div>
@@ -171,20 +156,6 @@
 
                     {!! view_render_event('bagisto.shop.components.products.card.wishlist_option.after') !!}
 
-                    {!! view_render_event('bagisto.shop.components.products.card.compare_option.before') !!}
-
-                    @if (core()->getConfigData('catalog.products.settings.compare_option'))
-                        <span
-                            class="icon-compare cursor-pointer p-2.5 text-2xl max-sm:hidden"
-                            role="button"
-                            aria-label="@lang('shop::app.components.products.card.add-to-compare')"
-                            tabindex="0"
-                            @click="addToCompare(product.id)"
-                        >
-                        </span>
-                    @endif
-
-                    {!! view_render_event('bagisto.shop.components.products.card.compare_option.after') !!}
                 </div>
             </div>
         </div>

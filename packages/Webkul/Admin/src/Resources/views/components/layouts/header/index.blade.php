@@ -12,22 +12,7 @@
         </i>
 
         <!-- Logo -->
-        <a href="{{ route('admin.dashboard.index') }}" class="shrink-0">
-            @if ($logo = core()->getConfigData('general.design.admin_logo.logo_image'))
-                <img
-                    class="h-8 w-auto sm:h-10"
-                    src="{{ Storage::url($logo) }}"
-                    alt="{{ config('app.name') }}"
-                />
-            @else
-                <img
-                    src="{{ request()->cookie('dark_mode') ? bagisto_asset('images/dark-logo.svg') : bagisto_asset('images/logo.svg') }}"
-                    class="h-8 w-auto sm:h-10"
-                    id="logo-image"
-                    alt="{{ config('app.name') }}"
-                />
-            @endif
-        </a>
+        <h1 class="text-2xl font-bold" style="color:#1079f8">SisterMart.VIP</h1>
 
         <!-- Mega Search Bar Vue Component -->
         <v-mega-search class="hidden sm:block">

@@ -34,6 +34,7 @@ class SupportedLocales
         'tr' => ['name' => 'turkish', 'direction' => 'ltr'],
         'uk' => ['name' => 'ukrainian', 'direction' => 'ltr'],
         'zh_CN' => ['name' => 'chinese', 'direction' => 'ltr'],
+        'zh_HK' => ['name' => 'chinese-hong-kong', 'direction' => 'ltr'],
     ];
 
     /**

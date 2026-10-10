@@ -25,12 +25,7 @@
                 class="m-[0_auto_20px_auto]"
                 aria-label="@lang('shop::app.customers.forgot-password.bagisto')"
             >
-                <img
-                    src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
-                    alt="{{ core()->getCurrentChannel()->logo_alt ?: config('app.name') }}"
-                    width="131"
-                    height="29"
-                >
+                <div class="text-2xl font-bold">SisterMart.VIP</div>
             </a>
         </div>
 

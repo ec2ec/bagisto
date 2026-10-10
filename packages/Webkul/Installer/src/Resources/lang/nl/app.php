@@ -229,6 +229,7 @@ return [
                 'tr' => 'Turks',
                 'uk' => 'Oekraïens',
                 'zh_CN' => 'Chinees',
+                'zh_HK' => 'Chinees (Hongkong)',
             ],
         ],
 
@@ -981,6 +982,7 @@ return [
             'bengali' => 'Bengaals',
             'catalan' => 'Catalaans',
             'chinese' => 'Chinees',
+            'chinese-hong-kong' => 'Chinees (Hongkong)',
             'continue' => 'Doorgaan',
             'dutch' => 'Nederlands',
             'english' => 'Engels',

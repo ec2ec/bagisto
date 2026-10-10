@@ -44,35 +44,26 @@
         </div>
 
         <!-- For Mobile view -->
-        <x-shop::accordion
-            :is-active="false"
-            class="hidden w-full! rounded-xl border-2! border-[#e9decc]! max-1060:block max-sm:rounded-lg"
-        >
-            <x-slot:header class="rounded-t-lg bg-[#F1EADF] font-medium max-md:p-2.5 max-sm:px-3 max-sm:py-2 max-sm:text-sm">
-                @lang('shop::app.components.layouts.footer.footer-content')
-            </x-slot>
-
-            <x-slot:content class="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] items-start gap-x-6 gap-y-8 bg-transparent! p-4!">
-                @foreach ($columns as $footerLinkSection)
-                    <ul
-                        class="grid gap-5 wrap-break-word text-sm"
-                        v-pre
-                    >
-                        @foreach ($footerLinkSection as $link)
-                            <li>
-                                <a
-                                    href="{{ url($link['url']) }}"
-                                    class="text-sm font-medium max-sm:text-xs"
-                                >
-                                    {{ $link['title'] }}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                @endforeach
-            </x-slot>
-        </x-shop::accordion>
-
+        <!-- footer menus -->
+        <div style="color:#888888" class="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] items-start gap-x-6 gap-y-8 bg-transparent! p-4!">
+            @foreach ($columns as $footerLinkSection)
+                <ul
+                    class="grid gap-5 wrap-break-word text-sm"
+                    v-pre
+                >
+                    @foreach ($footerLinkSection as $link)
+                        <li>
+                            <a
+                                href="{{ url($link['url']) }}"
+                                class="text-sm font-medium max-sm:text-xs"
+                            >
+                                {{ $link['title'] }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            @endforeach
+        </div>
         {!! view_render_event('bagisto.shop.layout.footer.newsletter_subscription.before') !!}
 
         <!-- News Letter subscription -->

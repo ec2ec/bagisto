@@ -3,8 +3,6 @@
     template as much as possible.
 -->
 @php
-    $showCompare = (bool) core()->getConfigData('catalog.products.settings.compare_option');
-
     $showWishlist = (bool) core()->getConfigData('customer.settings.wishlist.wishlist_option');
 @endphp
 
@@ -26,13 +24,7 @@
                 class="flex max-h-7.5 items-center"
                 aria-label="@lang('shop::app.components.layouts.header.mobile.bagisto')"
             >
-                <img
-                    class="block"
-                    src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
-                    alt="{{ core()->getCurrentChannel()->logo_alt ?: config('app.name') }}"
-                    width="131"
-                    height="29"
-                >
+                <h1 class="text-2xl font-bold">SisterMart</h1>
             </a>
 
             {!! view_render_event('bagisto.shop.components.layouts.header.mobile.logo.after') !!}
@@ -41,18 +33,48 @@
         <!-- Right Navigation -->
         <div>
             <div class="flex items-center gap-x-5 max-md:gap-x-4">
-                {!! view_render_event('bagisto.shop.components.layouts.header.mobile.compare.before') !!}
+    {!! view_render_event('bagisto.shop.components.layouts.header.mobile.search.before') !!}
 
-                @if($showCompare)
-                    <a
-                        href="{{ route('shop.compare.index') }}"
-                        aria-label="@lang('shop::app.components.layouts.header.mobile.compare')"
-                    >
-                        <span class="text-2xl cursor-pointer icon-compare"></span>
-                    </a>
-                @endif
+    <!-- Serach Catalog Form -->
+    <form action="{{ route('shop.search.index') }}" class="flex items-center w-full">
+        <label
+            for="mobile-organic-search"
+            class="sr-only"
+        >
+            @lang('shop::app.components.layouts.header.mobile.search')
+        </label>
 
-                {!! view_render_event('bagisto.shop.components.layouts.header.mobile.compare.after') !!}
+        <div class="relative w-full">
+            <div class="icon-search pointer-events-none absolute top-3 flex items-center text-2xl max-md:text-xl max-sm:top-2.5 ltr:left-3 rtl:right-3"></div>
+
+            @php
+                $maxQueryLength = ((int) core()->getConfigData('search_engines.elastic.settings.max_query_length')) ?: 1000;
+
+                $minQueryLength = (int) core()->getConfigData('search_engines.elastic.settings.min_query_length');
+
+                $minQueryLength = $minQueryLength > 0 && $minQueryLength <= $maxQueryLength ? $minQueryLength : 0;
+            @endphp
+
+            <input
+                type="text"
+                id="mobile-organic-search"
+                class="block w-full rounded-xl border border-['#E3E3E3'] px-11 py-3.5 text-sm font-medium text-gray-900 max-md:rounded-lg max-md:px-10 max-md:py-3 max-md:font-normal max-sm:text-xs"
+                name="query"
+                value="{{ request('query') }}"
+                minlength="{{ $minQueryLength }}"
+                maxlength="{{ $maxQueryLength }}"
+                placeholder="@lang('shop::app.components.layouts.header.mobile.search-text')"
+                pattern="[^\\]+"
+                required
+            >
+
+            @if (core()->getConfigData('catalog.products.settings.image_search'))
+                @include('shop::search.images.index')
+            @endif
+        </div>
+    </form>
+
+    {!! view_render_event('bagisto.shop.components.layouts.header.mobile.search.after') !!}
 
                 {!! view_render_event('bagisto.shop.components.layouts.header.mobile.mini_cart.before') !!}
 
@@ -205,48 +227,6 @@
         </div>
     </div>
 
-    {!! view_render_event('bagisto.shop.components.layouts.header.mobile.search.before') !!}
-
-    <!-- Serach Catalog Form -->
-    <form action="{{ route('shop.search.index') }}" class="flex items-center w-full">
-        <label
-            for="mobile-organic-search"
-            class="sr-only"
-        >
-            @lang('shop::app.components.layouts.header.mobile.search')
-        </label>
-
-        <div class="relative w-full">
-            <div class="icon-search pointer-events-none absolute top-3 flex items-center text-2xl max-md:text-xl max-sm:top-2.5 ltr:left-3 rtl:right-3"></div>
-
-            @php
-                $maxQueryLength = ((int) core()->getConfigData('search_engines.elastic.settings.max_query_length')) ?: 1000;
-
-                $minQueryLength = (int) core()->getConfigData('search_engines.elastic.settings.min_query_length');
-
-                $minQueryLength = $minQueryLength > 0 && $minQueryLength <= $maxQueryLength ? $minQueryLength : 0;
-            @endphp
-
-            <input
-                type="text"
-                id="mobile-organic-search"
-                class="block w-full rounded-xl border border-['#E3E3E3'] px-11 py-3.5 text-sm font-medium text-gray-900 max-md:rounded-lg max-md:px-10 max-md:py-3 max-md:font-normal max-sm:text-xs"
-                name="query"
-                value="{{ request('query') }}"
-                minlength="{{ $minQueryLength }}"
-                maxlength="{{ $maxQueryLength }}"
-                placeholder="@lang('shop::app.components.layouts.header.mobile.search-text')"
-                pattern="[^\\]+"
-                required
-            >
-
-            @if (core()->getConfigData('catalog.products.settings.image_search'))
-                @include('shop::search.images.index')
-            @endif
-        </div>
-    </form>
-
-    {!! view_render_event('bagisto.shop.components.layouts.header.mobile.search.after') !!}
 </div>
 
 @pushOnce('scripts')
@@ -267,12 +247,7 @@
                 <x-slot:header>
                     <div class="flex items-center justify-between">
                         <a href="{{ route('shop.home.index') }}">
-                            <img
-                                src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
-                                alt="{{ core()->getCurrentChannel()->logo_alt ?: config('app.name') }}"
-                                width="131"
-                                height="29"
-                            >
+                            <h1 class="text-2xl font-bold">SisterMart</h1>
                         </a>
                     </div>
                 </x-slot>
@@ -326,7 +301,7 @@
                         core()->getCurrentChannel()->locales()->count() > 1
                         || core()->getCurrentChannel()->currencies()->count() > 1
                     )
-                        <div class="fixed bottom-0 z-10 grid w-full max-w-full grid-cols-[1fr_auto_1fr] items-center justify-items-center border-t border-zinc-200 bg-white px-5 ltr:left-0 rtl:right-0">
+                        <div class="bottom-0 z-10 grid w-full max-w-full grid-cols-[1fr_auto_1fr] items-center justify-items-center border-t border-zinc-200 bg-white px-5 ltr:left-0 rtl:right-0">
                             <!-- Filter Drawer -->
                             <x-shop::drawer
                                 position="bottom"
@@ -434,7 +409,7 @@
             >
             <!-- First level view -->
             <div class="shrink-0 w-full h-full px-6 overflow-auto">
-                <div class="py-4">
+                <div style="padding-bottom: 100px;">
                         <div
                             v-for="category in categories"
                             :key="category.id"

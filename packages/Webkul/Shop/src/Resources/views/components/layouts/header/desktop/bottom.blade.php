@@ -13,12 +13,7 @@
             href="{{ route('shop.home.index') }}"
             aria-label="@lang('shop::app.components.layouts.header.desktop.bottom.bagisto')"
         >
-            <img
-                src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
-                width="131"
-                height="29"
-                alt="{{ core()->getCurrentChannel()->logo_alt ?: config('app.name') }}"
-            >
+            <h1 class="text-2xl font-bold">SisterMart.VIP</h1>
         </a>
 
         {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.logo.after') !!}
@@ -114,19 +109,6 @@
         <div class="mt-1.5 flex gap-x-8 max-[1100px]:gap-x-6 max-lg:gap-x-8">
 
             {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.compare.before') !!}
-
-            <!-- Compare -->
-            @if(core()->getConfigData('catalog.products.settings.compare_option'))
-                <a
-                    href="{{ route('shop.compare.index') }}"
-                    aria-label="@lang('shop::app.components.layouts.header.desktop.bottom.compare')"
-                >
-                    <span
-                        class="inline-block text-2xl cursor-pointer icon-compare"
-                        role="presentation"
-                    ></span>
-                </a>
-            @endif
 
             {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.compare.after') !!}
 
